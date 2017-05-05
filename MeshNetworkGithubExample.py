@@ -75,7 +75,8 @@ class MessageListBox(urwid.ListBox):
 
 class MsgEntryListBox(urwid.ListBox):
     def __init__(self):
-        body = [urwid.Edit("Target:"), urwid.Edit("Message:"), urwid.Button("Request", self.req_pressed), urwid.Button("Publish", self.pub_pressed)]
+        body = [urwid.Edit("Target:"), urwid.Edit("Message:"), urwid.Button("Request", self.req_pressed), \
+        urwid.Button("Publish", self.pub_pressed), urwid.Button("Voice Chat (ignores Message: )", self.voice_pressed)]
         super(MsgEntryListBox, self).__init__(urwid.SimpleFocusListWalker(body))
 
     #THESE TWO ACTIONS WILL CAUSE ANYMESH TO SEND A MESSAGE - EITHER A PUBLISH OR A REQUEST
@@ -90,6 +91,19 @@ class MsgEntryListBox(urwid.ListBox):
         message = {"msg": self.body[1].edit_text}
         any_mesh.publish(target, message)
         msg_list_box.add_line('Publishing message', message['msg'])
+
+    #TO-DO: this is method called when User specified they want to do a voice chat.
+    def voice_pressed(self, something):
+        target = self.body[0].edit_text
+        #TO-DO: Add in the ability to listen for noise and convert that into bits to send
+
+        #The code below is what message was for request and publish.  However "msg"
+        #for this method should be the audio turned into bits.
+        #message = {"msg": TURN AUDIO INTO BITS}
+        #This call is what triggers Twisted to do stuff.  Twisted should be able
+        #to take in the bit conversion of the audio.
+        any_mesh.request(target, message)
+        msg_list_box.add_line('Sending request', message['msg'])
 
 
 def load_msg_frame():
