@@ -99,7 +99,7 @@ class MsgEntryListBox(urwid.ListBox):
         #TO-DO: Add in the ability to listen for noise and convert that into bits to send
 
         #The code below is what message was for request and publish.  However "msg"
-        #for this method should be the audio turned into bits.
+        #for this method should be the audio turngit ed into bits.
         #message = {"msg": TURN AUDIO INTO BITS}
         #This call is what triggers Twisted to do stuff.  Twisted should be able
         #to take in the bit conversion of the audio.
