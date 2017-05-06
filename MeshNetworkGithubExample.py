@@ -16,6 +16,7 @@ class AmDelegate(AnyMeshDelegateProtocol):
             if msgFormat == None:
                 msg_list_box.add_line('Message from ' + message.sender, message.data['msg'])
             elif msgFormat == 'voice':
+                print('not implemented yet')
                 #TO-DO: Add the voice playing funcitonality here.
 
 #FUNCTION TO START ANYMESH.  WE DON'T CALL .RUN BECAUSE URWID HAS STARTED THE TWISTED REACTOR FOR US
